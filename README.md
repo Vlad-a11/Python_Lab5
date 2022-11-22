@@ -2,4 +2,4 @@
 **Работа с массивами и файлами в Python**
 
 ![Screenshot](scrn1.png)
-![Screenshot](scrn2.png)
+
