@@ -36,8 +36,10 @@ class Main(QDialog):
             file = open(path_to_file, 'r')
 
             data = file.read()
+
+
             # выводим считанные данные на экран
-            self.plainTextEdit.appendPlainText("Полученные данные: \n" + data + "\n")
+            self.plainTextEdit.appendPlainText("Полученные данные: \n")
 
             global list_of_numbers
             list_of_numbers = []
@@ -46,8 +48,14 @@ class Main(QDialog):
             # [0-9] -- описывает что ищем
             # + -- говорит, что искать нужно минимум от 1 символа
             for num in re.findall(r'\b[0-9]+\b', data):
-                list_of_numbers.append(num)
 
+                list_of_numbers.append(num)
+            for k, i in enumerate(list_of_numbers):
+                self.plainTextEdit.insertPlainText("{0:5}".format(i))
+                # чтобы текст был в виде таблицы, делаем отступ после
+                # 6 элемента
+                if ((k + 1) % 5) == 0:
+                    self.plainTextEdit.appendPlainText("")
 
     def process_data(self):
         if validation_of_data():
@@ -64,7 +72,7 @@ class Main(QDialog):
 
                 # выводим список на экран
                 for k, i in enumerate(list_of_numbers):
-                    self.plainTextEdit.insertPlainText(str(i) + " ")
+                    self.plainTextEdit.insertPlainText("{0:5}".format(i))
                     # чтобы текст был в виде таблицы, делаем отступ после
                     # 6 элемента
                     if ((k + 1) % 5) == 0:
